@@ -1,0 +1,6 @@
+<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Shape -->
+  <circle cx="30" cy="30" r="28" fill="#2c3e50" stroke="#ecf0f1" stroke-width="3"></circle>
+  <!-- Text -->
+  <text x="50%" y="55%" text-anchor="middle" font-size="22" font-family="Arial, sans-serif" fill="#ecf0f1">MH</text>
+</svg>
