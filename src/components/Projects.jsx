@@ -5,12 +5,12 @@ const projects = [
     title: "NorBec Landscaping Booking Site",
     image: "/assets/norbec.jpg",
     summary:
-      "A business-focused booking and lead generation system designed to streamline customer inquiries, automate scheduling, and improve conversion from website traffic to booked services.",
+      "A business focused booking and lead generation system designed to streamline customer inquiries, automate scheduling, and improve conversion from website traffic to booked services.",
     tech: ["React", "Vite", "Calendly", "Zapier", "Google Sheets"],
     role:
       "Designed and developed a responsive frontend experience integrated with scheduling and automation tools, creating a seamless flow from user interaction to booking confirmation.",
     problem:
-      "Many service-based businesses lose potential customers due to unclear navigation and manual booking processes. This system demonstrates how structured UI, automation, and integrations can convert visitors into actual leads and bookings efficiently.",
+      "Many service based businesses lose potential customers due to unclear navigation and manual booking processes. This system demonstrates how structured UI, automation, and integrations can convert visitors into actual leads and bookings efficiently.",
     demo: "https://norbec-landscaping-website.onrender.com/",
     github: "https://github.com/WebAlchemistLabs/norbec-landscaping-website",
     gallery: [
@@ -45,7 +45,7 @@ const projects = [
     role:
       "Built a complete storefront experience including product browsing, cart functionality, user authentication, and payment processing, focusing on usability, structure, and real-world application flow.",
     problem:
-      "This project demonstrates how modern e-commerce platforms handle product interaction, user sessions, and secure payments, showcasing the ability to build scalable, real-world digital commerce systems.",
+      "This project demonstrates how modern e-commerce platforms handle product interaction, user sessions, and secure payments, showcasing the ability to build scalable, real world digital commerce systems.",
     demo: "https://webalchemistlabs-ecommerce.vercel.app",
     github: "https://github.com/WebAlchemistLabs/web-alchemist-labs-ecommerce",
     gallery: [],
@@ -57,7 +57,7 @@ const projects = [
       "An internal help desk system designed to manage support workflows through structured ticket creation, priority tracking, status updates, and admin-side management.",
     tech: ["React", "Firebase", "Admin Dashboard", "Ticket Workflow"],
     role:
-      "Designed and built a ticket-based workflow system including user submission, status tracking, priority handling, and admin dashboard functionality for managing and resolving support requests.",
+      "Designed and built a ticket based workflow system including user submission, status tracking, priority handling, and admin dashboard functionality for managing and resolving support requests.",
     problem:
       "Organizations rely on structured support systems to manage internal issues efficiently. This project demonstrates how ticket workflows, status visibility, and role-based management can improve communication, organization, and issue resolution.",
     demo: "#",

@@ -28,8 +28,8 @@ export default function About() {
 
           <p className="about-text">
             I’m a software developer focused on building responsive,
-            user-friendly digital projects that combine strong design,
-            practical functionality, and real-world usefulness. I enjoy
+            user friendly digital projects that combine strong design,
+            practical functionality, and real world usefulness. I enjoy
             creating work that looks professional, feels polished, and
             solves actual problems.
           </p>
@@ -39,13 +39,13 @@ export default function About() {
             continuing to grow my skills through hands-on projects, portfolio
             development, and technical problem solving. My goal is to build a
             strong body of work that helps me stand out for software, web,
-            support, and UX-related opportunities.
+            support, and UX related opportunities.
           </p>
 
           <ul className="highlight-list">
             <li>Responsive websites and digital projects built with modern tools</li>
             <li>Clean layouts and structured development</li>
-            <li>Business-focused projects with real-world use cases</li>
+            <li>Business focused projects with real world use cases</li>
             <li>Strong focus on presentation, usability, and polish</li>
           </ul>
 

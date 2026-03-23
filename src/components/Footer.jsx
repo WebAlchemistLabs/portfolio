@@ -6,7 +6,7 @@ export default function Footer() {
           <h3 className="footer-title">Web Alchemist</h3>
           <p className="footer-copy">
             Web Alchemist is a portfolio and business brand focused on building
-            modern, user-focused digital projects across web development, automation,
+            modern, user focused digital projects across web development, automation,
             business workflows, and practical software solutions.
           </p>
         </div>
