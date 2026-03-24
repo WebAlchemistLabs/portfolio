@@ -1566,6 +1566,20 @@ textarea {
   transition: all 300ms ease;
 }
 
+.system-viewer-mobile-nav {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.system-viewer-mobile-count {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
 .system-viewer-stage {
   border-radius: 18px;
   background: radial-gradient(circle at center, rgba(59, 130, 246, 0.08), rgba(0, 0, 0, 0.2));
@@ -1632,6 +1646,17 @@ textarea {
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.04);
   padding: 12px 14px;
+}
+
+.system-viewer-context summary {
+  list-style: none;
+  cursor: pointer;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.system-viewer-context summary::-webkit-details-marker {
+  display: none;
 }
 
 .system-viewer-context h4 {
@@ -1702,27 +1727,84 @@ textarea {
 }
 
 @media (max-width: 640px) {
+  .project-workflow-strip {
+    display: none;
+  }
+
   .system-viewer-overlay {
     padding: 10px;
   }
 
   .system-viewer-shell {
     border-radius: 18px;
+    padding: 12px;
+    gap: 10px;
   }
 
-  .system-viewer-nav-btn {
+  .system-viewer-header {
+    gap: 10px;
+  }
+
+  .system-viewer-screen-title {
+    font-size: 1.1rem;
+    margin-top: 2px;
+  }
+
+  .system-viewer-tags,
+  .system-viewer-actions .system-viewer-action-btn:not(.system-viewer-close) {
+    display: none;
+  }
+
+  .system-viewer-actions {
+    align-self: flex-start;
+  }
+
+  .system-viewer-stage-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .system-viewer-nav-desktop {
+    display: none;
+  }
+
+  .system-viewer-stage {
+    min-height: 42vh;
+    border-radius: 14px;
+  }
+
+  .system-viewer-image-wrap {
+    padding: 10px;
+  }
+
+  .system-viewer-image {
+    max-height: 48vh;
+    border-radius: 10px;
+  }
+
+  .system-viewer-mobile-nav {
+    display: flex;
+  }
+
+  .system-viewer-mobile-nav .system-viewer-nav-btn {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
   }
 
-  .system-viewer-stage-row {
-    grid-template-columns: 1fr;
-    gap: 8px;
+  .system-viewer-context {
+    padding: 10px 12px;
   }
 
-  .system-viewer-nav-btn {
-    justify-self: center;
+  .system-viewer-context summary {
+    font-size: 0.92rem;
+  }
+
+  .system-viewer-context ul {
+    margin-top: 8px;
+    font-size: 0.88rem;
+    max-height: 120px;
+    overflow: auto;
   }
 }
 

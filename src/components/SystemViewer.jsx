@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import useImagePanZoom from "./useImagePanZoom";
 
+const SWIPE_THRESHOLD = 48;
+
 export default function SystemViewer({
   isOpen,
   images,
@@ -12,6 +14,7 @@ export default function SystemViewer({
   onPrev,
 }) {
   const [isImageLoading, setIsImageLoading] = useState(true);
+  const [touchStart, setTouchStart] = useState(null);
 
   const activeImage = useMemo(() => {
     if (!images || images.length === 0) return null;
@@ -72,7 +75,33 @@ export default function SystemViewer({
   useEffect(() => {
     if (!isOpen || !activeImage) return;
     setIsImageLoading(true);
+    setTouchStart(null);
   }, [isOpen, activeIndex, activeImage]);
+
+  function handleStageTouchStart(event) {
+    if (isZoomed || event.touches.length !== 1) return;
+
+    const touch = event.touches[0];
+    setTouchStart({ x: touch.clientX, y: touch.clientY });
+  }
+
+  function handleStageTouchEnd(event) {
+    if (!touchStart || isZoomed || event.changedTouches.length !== 1) return;
+
+    const touch = event.changedTouches[0];
+    const deltaX = touch.clientX - touchStart.x;
+    const deltaY = touch.clientY - touchStart.y;
+
+    setTouchStart(null);
+
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD || Math.abs(deltaY) > 70) return;
+
+    if (deltaX < 0) {
+      onNext();
+    } else {
+      onPrev();
+    }
+  }
 
   if (!isOpen || !activeImage) return null;
 
@@ -134,7 +163,7 @@ export default function SystemViewer({
         <div className="system-viewer-stage-row">
           <button
             type="button"
-            className="system-viewer-nav-btn"
+            className="system-viewer-nav-btn system-viewer-nav-desktop"
             onClick={onPrev}
             aria-label="Previous image"
           >
@@ -149,6 +178,8 @@ export default function SystemViewer({
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerCancel}
+            onTouchStart={handleStageTouchStart}
+            onTouchEnd={handleStageTouchEnd}
           >
             <div className="system-viewer-image-wrap">
               {isImageLoading && <div className="system-viewer-loader" />}
@@ -173,6 +204,30 @@ export default function SystemViewer({
 
           <button
             type="button"
+            className="system-viewer-nav-btn system-viewer-nav-desktop"
+            onClick={onNext}
+            aria-label="Next image"
+          >
+            {">"}
+          </button>
+        </div>
+
+        <div className="system-viewer-mobile-nav" aria-label="Mobile gallery controls">
+          <button
+            type="button"
+            className="system-viewer-nav-btn"
+            onClick={onPrev}
+            aria-label="Previous image"
+          >
+            {"<"}
+          </button>
+
+          <p className="system-viewer-mobile-count">
+            {activeIndex + 1} / {images.length}
+          </p>
+
+          <button
+            type="button"
             className="system-viewer-nav-btn"
             onClick={onNext}
             aria-label="Next image"
@@ -182,14 +237,14 @@ export default function SystemViewer({
         </div>
 
         <div className="system-viewer-footer">
-          <div className="system-viewer-context">
-            <h4>What this screen demonstrates:</h4>
+          <details className="system-viewer-context" open>
+            <summary>What this screen demonstrates</summary>
             <ul>
               {(activeImage.context || []).map((point) => (
                 <li key={point}>{point}</li>
               ))}
             </ul>
-          </div>
+          </details>
         </div>
       </div>
     </div>
