@@ -53,21 +53,15 @@ export default function Contact() {
         <div className="contact-form calendly-panel">
           <div className="calendly-head">
             <h2>Book a Call</h2>
-            <p>
-              Schedule a call to discuss your project, business needs, or collaboration
-              opportunity.
-            </p>
           </div>
 
-          <div className="contact-cta-box">
-            <a
-              href="https://calendly.com/webalchemistlabs/30-minute-web-development-consultation"
-              target="_blank"
-              rel="noreferrer"
-              className="primary-btn"
-            >
-              Open Calendly
-            </a>
+          <div className="calendly-embed-wrap">
+            <iframe
+              src="https://calendly.com/webalchemistlabs/30-minute-web-development-consultation?hide_gdpr_banner=1"
+              title="Schedule a call with Web Alchemist"
+              className="calendly-embed-frame"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>

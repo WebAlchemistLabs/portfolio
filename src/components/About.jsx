@@ -16,37 +16,35 @@ export default function About() {
           <p className="eyebrow">About Me</p>
           <h1>Marlon Haynes</h1>
           <p className="about-subtitle">
-            Software Developer based in Toronto, Canada
+            Web Application Developer based in Toronto, Canada
           </p>
 
           <div className="chip-row">
-            <span className="chip">Software Development</span>
-            <span className="chip">Web Development</span>
-            <span className="chip">UX</span>
-            <span className="chip">Responsive Design</span>
+            <span className="chip">Web Application Developer</span>
+            <span className="chip">Software Developer</span>
+            <span className="chip">Business Focused Solutions</span>
+            <span className="chip">UX Minded Interfaces</span>
+            <span className="chip">Scalable Digital Products</span>
           </div>
 
           <p className="about-text">
-            I’m a software developer focused on building responsive,
-            user friendly digital projects that combine strong design,
-            practical functionality, and real world usefulness. I enjoy
-            creating work that looks professional, feels polished, and
-            solves actual problems.
+            I build web applications and digital products designed to solve real operational challenges.
+            My work combines interface quality, practical logic, and business value so each product is
+            polished, usable, and built for outcomes.
           </p>
 
           <p className="about-text">
-            I completed the Software Engineering Technician diploma and I’m
-            continuing to grow my skills through hands-on projects, portfolio
-            development, and technical problem solving. My goal is to build a
-            strong body of work that helps me stand out for software, web,
-            support, and UX related opportunities.
+            I completed the Software Engineering Technician diploma and continue to expand my experience
+            through hands on application projects. I focus on software development, web application
+            development, support systems, and UX related opportunities where product thinking and
+            implementation quality both matter.
           </p>
 
           <ul className="highlight-list">
-            <li>Responsive websites and digital projects built with modern tools</li>
-            <li>Clean layouts and structured development</li>
-            <li>Business focused projects with real world use cases</li>
-            <li>Strong focus on presentation, usability, and polish</li>
+            <li>Application focused projects with realistic business use cases</li>
+            <li>Strong structure across interface, logic, and workflow design</li>
+            <li>Polished user experience backed by practical system behavior</li>
+            <li>Hands on delivery across booking, commerce, dashboard, and support tools</li>
           </ul>
 
           <div className="hero-actions">
