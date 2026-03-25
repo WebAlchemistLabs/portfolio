@@ -20,13 +20,13 @@ const featuredProjects = [
     github: "https://github.com/WebAlchemistLabs/web-alchemist-labs-ecommerce",
   },
   {
-    title: "IT Help Desk Ticket System",
+    title: "HelpDesk Pro – IT Help Desk Ticket System",
     description:
       "An internal support application for ticket routing, priority handling, status management, and team operations.",
     stack: "React • Firebase • Authentication • Ticket Management • Dashboard",
-    image: "/assets/helpdesk.jpg",
-    demo: "#",
-    github: "#",
+    image: "/assets/help%20desk/help%20desk.png",
+    demo: "https://helpdesk-pro-scrr.onrender.com/",
+    github: "https://github.com/WebAlchemistLabs/helpdesk-pro",
   },
 ];
 

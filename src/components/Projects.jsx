@@ -360,10 +360,10 @@ const projects = [
   },
   {
     id: "helpdesk-project",
-    title: "IT Help Desk Ticket System",
+    title: "HelpDesk Pro – IT Help Desk Ticket System",
     thumbnailImage: {
-      src: "/assets/helpdesk.jpg",
-      title: "IT Help Desk Ticket System",
+      src: "/assets/help%20desk/help%20desk.png",
+      title: "HelpDesk Pro – IT Help Desk Ticket System",
     },
     summary:
       "An internal help desk system designed to manage support workflows through structured ticket creation, priority tracking, status updates, and admin-side management.",
@@ -385,8 +385,8 @@ const projects = [
       "Designed and built a ticket based workflow system including user submission, status tracking, priority handling, and admin dashboard functionality for managing and resolving support requests.",
     problem:
       "Organizations rely on structured support systems to manage internal issues efficiently. This project demonstrates how ticket workflows, status visibility, and role-based management can improve communication, organization, and issue resolution.",
-    demo: "#",
-    github: "#",
+    demo: "https://helpdesk-pro-scrr.onrender.com/",
+    github: "https://github.com/WebAlchemistLabs/helpdesk-pro",
     architectureFlow: [
       {
         title: "User",
