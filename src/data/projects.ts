@@ -32,7 +32,7 @@ export const projects: Project[] = [
     tags: ['React', 'Next.js', 'Firebase', 'Firestore', 'Tailwind CSS', 'TypeScript'],
     link: 'https://clientpulse-six.vercel.app/login',
     github: 'https://github.com/WebAlchemistLabs/CLIENTPULSE',
-    image: '/clientpulse.png',
+    image: '/clientpulse1.png',
     featured: true,
     badge: 'SaaS',
   },

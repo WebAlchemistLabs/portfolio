@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
 const navLinks = [
@@ -36,16 +35,14 @@ export default function Navbar() {
         )}
       >
         <div className="max-w-[1320px] mx-auto px-8 md:px-12 h-16 flex items-center justify-between">
-          <a href="#" className="block transition-opacity hover:opacity-85" aria-label="Home">
-            <Image src="/logo.png" alt="Marlon Haynes logo" width={64} height={64} className="h-14 w-auto object-contain" priority />
-          </a>
+          <a href="#" className="font-display italic text-xl text-[#F2EFE8] hover:text-[#C9A96E] transition-colors">MH</a>
 
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((l) => (
               <a
                 key={l.label}
                 href={l.href}
-                className="font-mono-dm text-[11px] text-[#F2EFE8] hover:text-[#C9A96E] transition-colors tracking-[0.14em] uppercase"
+                className="font-mono-dm text-[11px] text-[#9B97A0] hover:text-[#F2EFE8] transition-colors tracking-[0.14em] uppercase"
               >
                 {l.label}
               </a>
@@ -53,7 +50,12 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden md:flex items-center gap-5">
-            <a href="/resume.pdf" target="_blank" className="font-mono-dm text-[11px] text-[#F2EFE8] hover:text-[#C9A96E] transition-colors tracking-[0.14em] uppercase">
+            <a
+              href="/Marlon Haynes resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono-dm text-[11px] text-[#9B97A0] hover:text-[#F2EFE8] transition-colors tracking-[0.14em] uppercase"
+            >
               Resume
             </a>
             <a
@@ -95,7 +97,14 @@ export default function Navbar() {
               </motion.a>
             ))}
             <div className="flex items-center gap-6 mt-10 pt-8 border-t border-[#2A2A36]">
-              <a href="/resume.pdf" className="font-mono-dm text-[11px] text-[#9B97A0] tracking-widest uppercase">Resume</a>
+              <a
+                href="/Marlon Haynes resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono-dm text-[11px] text-[#9B97A0] tracking-widest uppercase"
+              >
+                Resume
+              </a>
               <a href="#contact" className="font-mono-dm text-[11px] text-[#C9A96E] tracking-widest uppercase">Hire me</a>
             </div>
           </motion.div>

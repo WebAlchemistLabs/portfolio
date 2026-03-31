@@ -35,7 +35,6 @@ export default function Projects() {
     <section id="projects" className="py-28 md:py-40 px-8 md:px-12 border-t border-[#2A2A36]">
       <div className="max-w-[1320px] mx-auto">
 
-        {/* Section header */}
         <Reveal>
           <div className="flex items-center gap-5 mb-6">
             <span className="font-mono-dm text-[10px] text-[#C9A96E]/60 tracking-[0.3em] uppercase">
@@ -66,7 +65,6 @@ export default function Projects() {
           </div>
         </Reveal>
 
-        {/* Project cards grid */}
         <div className="grid md:grid-cols-3 gap-6">
           <AnimatePresence>
             {visibleProjects.map((project, index) => (
@@ -100,9 +98,10 @@ export default function Projects() {
                         </span>
                       </div>
                     )}
-                    {/* Overlay on hover */}
+
+                    {/* Desktop hover overlay */}
                     <div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3"
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center gap-3 hidden md:flex"
                       style={{ background: 'rgba(14,14,18,0.75)' }}
                     >
                       {project.link && (
@@ -130,6 +129,7 @@ export default function Projects() {
                         </a>
                       )}
                     </div>
+
                     {/* Badge */}
                     {project.badge && (
                       <div className="absolute top-3 left-3">
@@ -145,6 +145,35 @@ export default function Projects() {
                           {project.badge}
                         </span>
                       </div>
+                    )}
+                  </div>
+
+                  {/* Mobile-only: always-visible action buttons */}
+                  <div
+                    className="flex md:hidden items-center gap-3 px-4 py-3 border-b border-[#2A2A36]"
+                    style={{ background: '#111118' }}
+                  >
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 inline-flex items-center justify-center gap-2 font-mono-dm text-[10px] py-2.5 tracking-widest uppercase transition-all rounded-lg"
+                        style={{ background: 'rgba(201,169,110,0.12)', border: '1px solid rgba(201,169,110,0.35)', color: '#C9A96E' }}
+                      >
+                        <ExternalLink size={12} /> Live Demo
+                      </a>
+                    )}
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 inline-flex items-center justify-center gap-2 font-mono-dm text-[10px] py-2.5 tracking-widest uppercase transition-all rounded-lg"
+                        style={{ border: '1px solid #2A2A36', color: '#9B97A0' }}
+                      >
+                        <GitBranch size={12} /> GitHub
+                      </a>
                     )}
                   </div>
 
@@ -173,7 +202,7 @@ export default function Projects() {
                       ))}
                     </div>
 
-                    {/* Action row */}
+                    {/* Bottom row */}
                     <div className="flex items-center justify-between pt-4 border-t border-[#2A2A36]">
                       <Link
                         href={`/projects/${project.slug}`}
@@ -181,7 +210,8 @@ export default function Projects() {
                       >
                         Read more →
                       </Link>
-                      <div className="flex items-center gap-3">
+                      {/* Desktop icon links */}
+                      <div className="hidden md:flex items-center gap-3">
                         {project.github && (
                           <a
                             href={project.github}

@@ -19,13 +19,7 @@ function Reveal({ children, delay = 0, className = '' }: { children: React.React
 }
 
 type Status = 'idle' | 'sending' | 'success' | 'error'
-
-type FormData = {
-  name: string
-  email: string
-  message: string
-}
-
+type FormData = { name: string; email: string; message: string }
 type Errors = Partial<Record<keyof FormData, string>>
 
 const inputBase = "w-full bg-transparent border-b border-[#2A2A36] px-0 py-4 text-sm text-[#F2EFE8] font-light placeholder:text-[#3A3835] focus:outline-none transition-colors duration-300"
@@ -54,33 +48,17 @@ export default function Contact() {
     e.preventDefault()
     if (!validate()) return
     setStatus('sending')
-
     try {
       const { default: emailjs } = await import('@emailjs/browser')
-
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
-
-      console.log('ENV CHECK', { serviceId, templateId, publicKey })
-
-      const result = await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-        },
-        publicKey
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        { from_name: formData.name, from_email: formData.email, message: formData.message, to_email: 'webalchemistlabs@gmail.com' },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       )
-
-      console.log('EmailJS success:', result)
       setStatus('success')
       setFormData({ name: '', email: '', message: '' })
-    } catch (error) {
-      console.error('EmailJS full error:', error)
-      alert(JSON.stringify(error))
+    } catch {
       setStatus('error')
     }
   }
@@ -88,9 +66,7 @@ export default function Contact() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
-    if (errors[name as keyof FormData]) {
-      setErrors((prev) => ({ ...prev, [name]: undefined }))
-    }
+    if (errors[name as keyof FormData]) setErrors((prev) => ({ ...prev, [name]: undefined }))
   }
 
   const links = [
@@ -104,28 +80,35 @@ export default function Contact() {
       <div className="max-w-[1320px] mx-auto">
         <Reveal>
           <div className="flex items-center gap-5 mb-20">
-            <span className="font-mono-dm text-[10px] text-[#C9A96E]/60 tracking-[0.3em] uppercase">05 Contact</span>
+            <span className="font-mono-dm text-[10px] text-[#C9A96E]/60 tracking-[0.3em] uppercase">05 — Contact</span>
             <div className="flex-1 h-px bg-[#2A2A36]" />
           </div>
         </Reveal>
 
         <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
-
-          {/* Left */}
           <div className="lg:col-span-5">
             <Reveal>
-              <div className="overflow-hidden mb-2">
-                <motion.h2 initial={{ y: '100%' }} whileInView={{ y: '0%' }} viewport={{ once: true }}
+              {/* Fixed: pb-2 on overflow-hidden divs prevents descender clipping on g */}
+              <div className="overflow-hidden pb-2 mb-2">
+                <motion.h2
+                  initial={{ y: '100%' }}
+                  whileInView={{ y: '0%' }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                  className="font-display text-[clamp(34px,4.5vw,64px)] italic text-[#F2EFE8] leading-[0.95]">
+                  className="font-display text-[clamp(34px,4.5vw,64px)] italic text-[#F2EFE8] leading-[1.05]"
+                >
                   Let us build
                 </motion.h2>
               </div>
-              <div className="overflow-hidden mb-10">
-                <motion.h2 initial={{ y: '100%' }} whileInView={{ y: '0%' }} viewport={{ once: true }}
+              <div className="overflow-hidden pb-2 mb-10">
+                <motion.h2
+                  initial={{ y: '100%' }}
+                  whileInView={{ y: '0%' }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="font-display text-[clamp(34px,4.5vw,64px)] leading-[0.95]"
-                  style={{ color: 'rgba(242,239,232,0.2)' }}>
+                  className="font-display text-[clamp(34px,4.5vw,64px)] leading-[1.05]"
+                  style={{ color: 'rgba(242,239,232,0.2)' }}
+                >
                   something great.
                 </motion.h2>
               </div>
@@ -140,7 +123,9 @@ export default function Contact() {
             <Reveal delay={0.22}>
               <div className="border border-[#2A2A36]">
                 {links.map(({ label, sub, href, Icon }) => (
-                  <a key={label} href={href}
+                  <a
+                    key={label}
+                    href={href}
                     target={label !== 'Email' ? '_blank' : undefined}
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 px-5 py-4 border-b border-[#2A2A36] last:border-b-0 hover:bg-[#16161C] transition-colors group"
@@ -157,7 +142,6 @@ export default function Contact() {
             </Reveal>
           </div>
 
-          {/* Right — form */}
           <div className="lg:col-span-7">
             <Reveal delay={0.18}>
               {status === 'success' ? (
@@ -169,39 +153,28 @@ export default function Contact() {
                   <CheckCircle size={28} className="text-green-400 mb-6" />
                   <h3 className="font-display text-3xl italic text-[#F2EFE8] mb-3">Message sent.</h3>
                   <p className="font-mono-dm text-[10px] text-[#4A4755] tracking-widest uppercase mb-6">I will reply within 24 hours.</p>
-                  <button
-                    onClick={() => setStatus('idle')}
-                    className="font-mono-dm text-[10px] text-[#C9A96E] tracking-widest uppercase hover:opacity-70 transition-opacity"
-                  >
+                  <button onClick={() => setStatus('idle')} className="font-mono-dm text-[10px] text-[#C9A96E] tracking-widest uppercase hover:opacity-70 transition-opacity">
                     Send another →
                   </button>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-8" noValidate>
-
-                  {/* Name */}
-                  <div>
-                    <label className="font-mono-dm text-[10px] text-[#C9A96E]/60 tracking-[0.25em] uppercase block mb-3">Name</label>
-                    <input
-                      type="text" name="name" value={formData.name} onChange={handleChange}
-                      placeholder="Your name"
-                      className={`${inputBase} ${errors.name ? 'border-red-500/60 focus:border-red-500' : 'focus:border-[#C9A96E]'}`}
-                    />
-                    {errors.name && <p className="font-mono-dm text-[9px] text-red-400 mt-2 tracking-wider">{errors.name}</p>}
-                  </div>
-
-                  {/* Email */}
-                  <div>
-                    <label className="font-mono-dm text-[10px] text-[#C9A96E]/60 tracking-[0.25em] uppercase block mb-3">Email</label>
-                    <input
-                      type="email" name="email" value={formData.email} onChange={handleChange}
-                      placeholder="your@email.com"
-                      className={`${inputBase} ${errors.email ? 'border-red-500/60 focus:border-red-500' : 'focus:border-[#C9A96E]'}`}
-                    />
-                    {errors.email && <p className="font-mono-dm text-[9px] text-red-400 mt-2 tracking-wider">{errors.email}</p>}
-                  </div>
-
-                  {/* Message */}
+                  {[
+                    { label: 'Name', name: 'name', type: 'text', placeholder: 'Your name' },
+                    { label: 'Email', name: 'email', type: 'email', placeholder: 'your@email.com' },
+                  ].map((field) => (
+                    <div key={field.name}>
+                      <label className="font-mono-dm text-[10px] text-[#C9A96E]/60 tracking-[0.25em] uppercase block mb-3">{field.label}</label>
+                      <input
+                        type={field.type} name={field.name} value={formData[field.name as keyof FormData]}
+                        onChange={handleChange} placeholder={field.placeholder}
+                        className={`${inputBase} ${errors[field.name as keyof FormData] ? 'border-red-500/60 focus:border-red-500' : 'focus:border-[#C9A96E]'}`}
+                      />
+                      {errors[field.name as keyof FormData] && (
+                        <p className="font-mono-dm text-[9px] text-red-400 mt-2 tracking-wider">{errors[field.name as keyof FormData]}</p>
+                      )}
+                    </div>
+                  ))}
                   <div>
                     <label className="font-mono-dm text-[10px] text-[#C9A96E]/60 tracking-[0.25em] uppercase block mb-3">Message</label>
                     <textarea
@@ -212,37 +185,30 @@ export default function Contact() {
                     {errors.message && <p className="font-mono-dm text-[9px] text-red-400 mt-2 tracking-wider">{errors.message}</p>}
                   </div>
 
-                  {/* Error state */}
                   {status === 'error' && (
                     <div className="flex items-center gap-3 px-4 py-3 rounded-lg" style={{ background: 'rgba(226,75,74,0.08)', border: '1px solid rgba(226,75,74,0.2)' }}>
                       <AlertCircle size={14} className="text-red-400 flex-shrink-0" />
-                      <p className="font-mono-dm text-[10px] text-red-400 tracking-wider">Failed to send. Please try emailing directly at webalchemistlabs@gmail.com</p>
+                      <p className="font-mono-dm text-[10px] text-red-400 tracking-wider">Failed to send. Email directly at webalchemistlabs@gmail.com</p>
                     </div>
                   )}
 
                   <button
-                    type="submit"
-                    disabled={status === 'sending'}
+                    type="submit" disabled={status === 'sending'}
                     className="group inline-flex items-center gap-3 font-mono-dm text-[11px] px-8 py-4 tracking-[0.15em] uppercase transition-all duration-300 disabled:opacity-40"
                     style={{ color: '#F2EFE8', border: '1px solid rgba(255,255,255,0.16)' }}
                     onMouseEnter={e => { const el = e.currentTarget as HTMLElement; if (status !== 'sending') { el.style.borderColor = '#C9A96E'; el.style.color = '#C9A96E' } }}
                     onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'rgba(255,255,255,0.16)'; el.style.color = '#F2EFE8' }}
                   >
                     {status === 'sending' ? (
-                      <>
-                        <span className="inline-block w-3 h-3 border border-current border-t-transparent rounded-full animate-spin" />
-                        Sending...
-                      </>
+                      <><span className="inline-block w-3 h-3 border border-current border-t-transparent rounded-full animate-spin" /> Sending...</>
                     ) : (
-                      <>Send message <Send size={13} className="group-hover:translate-x-0.5 transition-transform" /></>
+                      <>Send message <Send size={13} /></>
                     )}
                   </button>
-
                 </form>
               )}
             </Reveal>
           </div>
-
         </div>
       </div>
     </section>
